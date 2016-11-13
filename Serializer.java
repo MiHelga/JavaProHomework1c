@@ -35,11 +35,7 @@ public class Serializer {
         try (FileReader fileReader = new FileReader(path)){
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = bufferedReader.readLine();
-//            if(objClass.getName()!= line){
-//                System.out.println("Wrong file! Deserialization failed!");
-//                return;
-//            }
-//            line = bufferedReader.readLine();
+
             while (line!=null){
                 String[] str = line.split("; ");
                 Field field = objClass.getDeclaredField(str[1]);
@@ -81,6 +77,7 @@ public class Serializer {
                 line = bufferedReader.readLine();
             }
             System.out.println("Deserialized successfully!");
+            bufferedReader.close();
         }
         catch(IOException|NoSuchFieldException|IllegalAccessException e){
             System.out.println("Some problems have occurred during deserialization!");
